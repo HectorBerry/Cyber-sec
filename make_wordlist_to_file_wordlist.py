@@ -5,15 +5,19 @@ import socket
 import requests
 
 extension_list = ['.php', '.py', '.html', '.txt']
-
-if sys.argv[1] == '-h':
+	
+## If no argument
+try:
+	if sys.argv[1] == '-h':
+		print("File url checker: Usage python3 file.py target wordlistPath -Nf (for showing also 404)")
+		sys.exit(1)
+	target_host = sys.argv[1]
+except Exception:
 	print("File url checker: Usage python3 file.py target wordlistPath -Nf (for showing also 404)")
 	sys.exit(1)
-	
-print("File url checker: Usage python3 file.py target wordlistPath -Nf (for showing also 404)")
-target_host = sys.argv[1]
 path_wordlist = sys.argv[2]
 show_not_found = ""
+
 try:
 	if sys.argv[3] == '-Nf':
 		show_not_found = sys.argv[3]
@@ -42,7 +46,7 @@ def dircheck(word):
 	
 	if response_code == 404:
 		return
-		
+		'.php', '.py', '.html', '.txt'
 	result = "\nhttp://%s/%s : (CODE:%s)" %(target_host, word, response_code)
 	return result
 ## Trying connection to the host
